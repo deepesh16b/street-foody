@@ -75,6 +75,6 @@ app.get("/update", (req, res) => {
 
 // ------------ listen - port--------------------
 
-app.listen("3000", () => {
+app.listen("3000" || process.env.PORT, () => {
   console.log("Server 'NEW' started at Port : 3000!");
 });

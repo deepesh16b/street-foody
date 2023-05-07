@@ -1,10 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700&display=swap');
- 
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700&display=swap");
+
+/* ===========NEW CSS START===============*/
+body {
+  background-color: #fff;
+}
+.nav-logo{
+    position: fixed;
+    top: 5px;
+    left: 45px;
+    font-size: 2.8rem;
+    font-weight: 800;
+    font-stretch: semi-condensed;
+    color: #743236;
+    
+}
+.nav-logo > a{
+    text-decoration: none;
+    color: #743236;
+}
+/* ------Home----------- */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 40px;
+}
+.home-container > .image > img {
+  width: 300px;
+}
+.home-container > .slogan {
+  font-size: 3.1rem;
+  font-weight: 600;
+  color: #743236;
+  margin: 30px;
+}
+.btn {
+  border-radius: 2px;
+  background-color: #f18e12;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  padding: 13px 23px;
+  font-family: ShopifySans, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.133;
+  text-align: center;
+  cursor: pointer;
+  margin: 20px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #f19b32;
+  color: #fff;
+  border: none;
+  scale: 1.01;
+}
+/* -----FOOTER---------- */
+.footer-padding {
+  padding-bottom: 60px;
+}
+
+.footer {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #743236;
+}
+
+.footer p {
+  /* margin-top: 25px; */
+  position: relative;
+  top: 13px;
+  font-size: 13px;
+  color: #fff;
+}
+/* -------ADD SHOP--------- */
+
+.add-shop-container {
+  width: 80%;
+  text-align: center;
+  margin: 15px auto;
+}
+.add-shop-container > .title {
+  font-size: 2em;
+  color: #454545;
+  margin: 27px auto 35px auto;
+  font-weight: 600;
+}
+.add-shop-container > .form-container > .column-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.form-container > .column-container > .col {
+  text-align: left;
+  margin: 0 30px;
+}
+.col > .form-group {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.input-box {
+  font-size: 1em;
+  padding: 3px 5px;
+  width: 100%;
+  height: 45px;
+  background-color: #e6e6e6c1;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.form-group .input-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.input-time .input-box {
+  width: 45%;
+}
+.checkbox-group > input {
+  margin-right: 15px;
+}
+.checkbox{
+  margin-left: 15px;
+}
+.upload-pic-group > input {
+  /*  */
+}
+.upload-pic-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.upload-pic-item > input{
+    padding: 4px;
+    width: 50%;
+    /* background-color: #743236; */
+    /* border-radius: 3px; */
+}
+.submit-btn {
+  width: 100%;
+  text-align: left;
+}
+.submit-btn > .btn {
+  padding: 10px 19px;
+  margin-left: 33px;
+}
+/* ===========NEW CSS ENDS===============*/
+
 .container-fluid {
-    padding-top: 70px;
-    padding-bottom: 70px;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 .navbar {
+  padding-top: 9px;
+  background-color: #e5e4e6;
+  padding-bottom: 5px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+.navbar-nav li a:hover {
+  color: #7126bafc !important;
+}
+
+#brand-name {
+  color: #7126bafc;
+  position: relative;
+  bottom: 8px;
+}
+
+.eachPost {
+  border-radius: 0.1px;
+  border: rgb(0, 0, 0);
+  border-style: solid;
+}
+
+.btn-compose {
+  font-family: "Roboto", sans-serif;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  border: none;
+  margin: 25px;
+  padding: 13px 17px;
+  font-weight: 500;
+}
+
+.btn-delete {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  padding: 8px 10px;
+}
+.btn-delete:hover {
+  border-radius: 5px;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #454545;
+}
+/* color: #7126bafc ; 
+background-color: #1abc9c;*/
+
+h1.mainEmptyPage {
+  /* font-family: 'Raleway', sans-serif; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3.8rem;
+  line-height: 6.3125rem;
+  letter-spacing: 0.03em;
+}
+h4.mainEmptyPage {
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+/* ------------------------------------------------- */
+
+@media only screen and (max-width: 500px) {
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+  .navbar {
     padding-top: 9px;
     background-color: #e5e4e6;
     padding-bottom: 5px;
@@ -13,199 +234,94 @@
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
-}
-.navbar-nav  li a:hover {
+  }
+  .navbar-nav li a:hover {
     color: #7126bafc !important;
-}
+  }
 
-.footer-padding {
-	padding-bottom: 60px;
-}
+  .footer-padding {
+    padding-bottom: 60px;
+  }
 
-.footer {
-	position: fixed;
-	text-align: center;
-	bottom: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #7126bafc;
-}
+  .footer {
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #7126bafc;
+  }
 
-.footer p {
-	/* margin-top: 25px; */
+  .footer p {
+    /* margin-top: 25px; */
     position: relative;
     top: 22px;
-	font-size: 14px;
-  color: #fff;
-}
+    font-size: 14px;
+    color: #fff;
+  }
 
-#brand-name{
+  #brand-name {
     color: #7126bafc;
     position: relative;
     bottom: 8px;
-}
+  }
 
-.btn{
+  .btn {
     background-color: #7126bafc;
     color: #fff;
     border-color: rgb(255, 255, 255);
     border-radius: 2px;
-}
-.btn:hover{
+  }
+  .btn:hover {
     background-color: #8b35e1;
     color: rgb(255, 255, 255);
-}
+  }
 
-.eachPost{
+  .eachPost {
     border-radius: 0.1px;
     border: rgb(0, 0, 0);
     border-style: solid;
-}
+  }
 
-.btn-compose{
-    font-family: 'Roboto', sans-serif;
+  .btn-compose {
+    font-family: "Roboto", sans-serif;
     border-radius: 3px;
     font-size: 1.4rem;
     border: none;
     margin: 25px;
-    padding : 13px 17px ;
+    padding: 13px 17px;
     font-weight: 500;
-}
+  }
 
-.btn-delete{
+  .btn-delete {
     font-size: 1.5rem;
     margin-top: 20px;
-    padding : 8px 10px ;
-}
-.btn-delete:hover{
+    padding: 8px 10px;
+  }
+  .btn-delete:hover {
     border-radius: 5px;
-}
-.navbar-default .navbar-nav>li>a {
+  }
+  .navbar-default .navbar-nav > li > a {
     color: #454545;
-}
-/* color: #7126bafc ; 
-background-color: #1abc9c;*/
+  }
 
-h1.mainEmptyPage{
+  /*=================================================================*/
+  h1.mainEmptyPage {
     /* font-family: 'Raleway', sans-serif; */
+    margin-top: -70px;
     font-style: normal;
-    font-weight: 600;
-    font-size: 3.8rem;
-    line-height: 6.3125rem;
-    letter-spacing: 0.03em;
-}
-h4.mainEmptyPage{
-    font-size: 2.2rem;
     font-weight: 400;
-}
-/* ------------------------------------------------- */
-
-@media only screen and (max-width: 500px){
-
-
-
-    .container-fluid {
-        padding-top: 70px;
-        padding-bottom: 70px;
-    }
-    .navbar {
-        padding-top: 9px;
-        background-color: #e5e4e6;
-        padding-bottom: 5px;
-        border: 0;
-        border-radius: 0;
-        margin-bottom: 0;
-        font-size: 12px;
-        letter-spacing: 5px;
-    }
-    .navbar-nav  li a:hover {
-        color: #7126bafc !important;
-    }
-    
-    .footer-padding {
-        padding-bottom: 60px;
-    }
-    
-    .footer {
-        position: fixed;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        background-color: #7126bafc;
-    }
-    
-    .footer p {
-        /* margin-top: 25px; */
-        position: relative;
-        top: 22px;
-        font-size: 14px;
-      color: #fff;
-    }
-    
-    #brand-name{
-        color: #7126bafc;
-        position: relative;
-        bottom: 8px;
-    }
-    
-    .btn{
-        background-color: #7126bafc;
-        color: #fff;
-        border-color: rgb(255, 255, 255);
-        border-radius: 2px;
-    }
-    .btn:hover{
-        background-color: #8b35e1;
-        color: rgb(255, 255, 255);
-    }
-    
-    .eachPost{
-        border-radius: 0.1px;
-        border: rgb(0, 0, 0);
-        border-style: solid;
-    }
-    
-    .btn-compose{
-        font-family: 'Roboto', sans-serif;
-        border-radius: 3px;
-        font-size: 1.4rem;
-        border: none;
-        margin: 25px;
-        padding : 13px 17px ;
-        font-weight: 500;
-    }
-    
-    .btn-delete{
-        font-size: 1.5rem;
-        margin-top: 20px;
-        padding : 8px 10px ;
-    }
-    .btn-delete:hover{
-        border-radius: 5px;
-    }
-    .navbar-default .navbar-nav>li>a {
-        color: #454545;
-    }
-   
-
-    /*=================================================================*/
-    h1.mainEmptyPage{
-        /* font-family: 'Raleway', sans-serif; */
-        margin-top: -70px;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2.4rem;
-        line-height: 2.3125rem;
-        letter-spacing: 0.03em;
-    }
-    h4.mainEmptyPage{
-        font-size: 1.35rem;
-        font-weight: 400;
-    }
-    .home-empty-view{
-        width: 80%;
-        margin: 0 auto;
-        text-align: center;
-    }
+    font-size: 2.4rem;
+    line-height: 2.3125rem;
+    letter-spacing: 0.03em;
+  }
+  h4.mainEmptyPage {
+    font-size: 1.35rem;
+    font-weight: 400;
+  }
+  .home-empty-view {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
 }

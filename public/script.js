@@ -17,6 +17,7 @@ const domainSubCategory = () => {
     console.log(categories);
     categories.forEach((e) => {
       const div = document.createElement("div");
+      div.setAttribute("class", "checkbox-div");
       const label = document.createElement("LABEL");
       label.innerText = e;
       const input = document.createElement("INPUT");

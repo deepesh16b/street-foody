@@ -126,8 +126,22 @@ body {
 .checkbox-group{
   width: 100%;
 }
-.checkbox{
-  margin-left: 15px;
+.checkbox-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3px;
+  background-color: #ececec;
+  padding: 5px;
+  border-radius: 4px;
+}
+.checkbox-div > label,.checkbox{
+  margin: 0;
+}
+.checkbox-div > .checkbox{
+  margin:0 ;
 }
 .upload-pic-group > input {
   /*  */

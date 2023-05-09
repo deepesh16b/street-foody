@@ -1,6 +1,26 @@
 <%- include("partials/header") -%>
 
+<div class="filter-container">
+    <h1 class="title">Filter Shops</h1>
+    <div class="form-group">
+        <label for="">Domain</label>
+        <select
+          class="input-box"
+          class="custom-select"
+          id="domainFilter"
+          name="domain"
+        >
+          <option selected oninput=domainFilter()>Choose...</option>
+          <% domains.forEach(function(eachDomain) { %>
+            <option ><%= eachDomain %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="shopsLists">
+        <div class="eachShop">
 
-
+        </div>
+      </div>
+</div>
 
 <%- include("partials/footer") -%>

@@ -30,3 +30,8 @@ const domainSubCategory = () => {
     });
   }
 };
+
+const domainFilter = () => {
+  const domain = document.getElementById("domainFilter").value;
+  
+}

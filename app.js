@@ -22,39 +22,65 @@ const domains = new Map([
   ["fast food", ["pizza", "sandwich", "burger"]],
 ]);
 
-const eachPostSchema = {
-  title: {
+const eachShopDataSchema = {
+  name: {
     type: String,
     require: true,
   },
-  content: {
+  owner: {
     type: String,
     require: true,
+  },
+  location: {
+    type: String,
+    require: true,
+  },
+  domain: {
+    type: String,
+    require: true,
+  },
+  items: {
+    type: [String],
+  },
+  description: {
+    type: String,
+  },
+  start_time: {
+    type: String,
+  },
+  end_time: {
+    type: String,
   },
 };
 
-const EachPost = mongoose.model("EachPost", eachPostSchema);
+const EachShop = mongoose.model("EachShop", eachShopDataSchema);
 
-const allPostSchema = {
+const allShopsSchema = {
   name: String,
-  allPostsArray: [eachPostSchema],
+  allShopsArray: [eachShopDataSchema],
 };
 
-const AllPost = mongoose.model("AllPost", allPostSchema);
+const AllShops = mongoose.model("AllShops", allShopsSchema);
 
-const eachPost = new EachPost({
-  title: "Day 1",
-  content: "Just ending my day with a coffee!",
+const eachShop = new EachShop({
+  name: "Bombay Foods",
+  owner: "Faizu",
+  location: "Piplani, Bhopal",
+  domain: "north indian",
+  items: ["chole bathure", "tawa chicken"],
+  description: "Bombay foods variety",
+  start_time: "10am",
+  end_time: "10pm",
 });
 
-const defaultArray = [eachPost];
+const defaultArray = [eachShop];
 
 //--MAIN OBJECT FOR STORING ALL POSTS IN ARRAY
-const allPost = new AllPost({
+const allShops = new AllShops({
   name: "Main",
-  allPostsArray: defaultArray,
+  allShopsArray: defaultArray,
 });
-
+// AllShops.save();
 // ----------get request---------------------
 
 app.get("/", (req, res) => {
@@ -65,13 +91,60 @@ app.get("/add", (req, res) => {
   res.render("add-shop", { domains: domainsArray });
 });
 app.get("/filter", (req, res) => {
-  res.render("filter-shop");
+  const domainsArray = Array.from(domains.keys());
+  res.render("filter-shop", { domains: domainsArray });
 });
 app.get("/update", (req, res) => {
   res.render("update-shop");
 });
+app.get("/added", (req, res) => {
+  res.render("added");
+});
+app.get("/fail-added", (req, res) => {
+  res.render("fail-added");
+});
 
 // -----------post request--------------------
+
+app.post("/add", function (req, res) {
+  const newShop = new EachShop({
+    name: req.body.name,
+    owner: req.body.owner,
+    location: req.body.location,
+    domain: req.body.domain,
+    description: req.body.description,
+    // items: ["chole bathure", "tawa chicken"],
+    // start_time: "10am",
+    // end_time: "10pm",
+  });
+
+  AllShops.find({}, function (error, foundArrayOfObjects) {
+    if (foundArrayOfObjects.length === 0) {
+      AllShops.insertMany([allShops], function (err) {
+        if (err) console.log(err);
+        else console.log("Successfully saved default items to database");
+      });
+      res.redirect("/");
+    }
+    // const posts = foundArrayOfObjects[0].allPostsArray;
+    // res.render("home", {content : homeStartingContent, allPosts : posts});
+  });
+
+  AllShops.findOne({}, function (err, foundObject) {
+    if (err) console.log(err);
+    else {
+      try {
+        foundObject.allShopsArray.push(newShop);
+        foundObject.save();
+        console.log("New Shop added in Database!");
+        res.redirect("/added");
+      } catch (err) {
+        console.log(err.message);
+        res.redirect("/fail-added");
+      }
+    }
+  });
+});
 
 // ------------ listen - port--------------------
 

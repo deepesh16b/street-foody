@@ -33,5 +33,33 @@ const domainSubCategory = () => {
 
 const domainFilter = () => {
   const domain = document.getElementById("domainFilter").value;
-  
-}
+  // alert(`domain changed to ${domain}`);
+  const encodedOption = encodeURIComponent(domain); // Encode the option value
+  fetch(`/search/${encodedOption}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      let tableHTML = "<tbody>";
+      
+      tableHTML += "";
+      let i=0;
+      data.forEach(shop => {
+        i = i + 1;
+        tableHTML += "<tr>";
+        tableHTML += "<th scope='row'>" + i + "</th>";
+        tableHTML += "<td>" + shop.name + "</td>";
+        tableHTML += "<td>" + shop.owner + "</td>";
+        tableHTML += "<td>" + shop.location + "</td>";
+        tableHTML += "<td>" + shop.description + "</td>";
+        tableHTML += "</tr>";
+      });
+      
+      tableHTML += "</tbody>";
+      
+      // Display the HTML table
+      document.getElementById("shopTableBody").innerHTML = tableHTML;
+      
+      
+      
+    });
+};

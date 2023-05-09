@@ -103,6 +103,24 @@ app.get("/added", (req, res) => {
 app.get("/fail-added", (req, res) => {
   res.render("fail-added");
 });
+// ------- API endpoint-----------
+app.get('/search/:option', async (req, res) => {
+  const option = decodeURIComponent(req.params.option);
+
+  try {
+    const foundShops = await AllShops.find({'allShopsArray.domain': option});
+
+    if (foundShops.length === 0) {
+      res.json([]);
+    } else {
+      const shops = foundShops[0].allShopsArray.filter(shop => shop.domain === option);
+      res.json(shops);
+    }
+  } catch (error) {
+    console.log(error);
+    res.send('Error occurred while searching for shops');
+  }
+});
 
 // -----------post request--------------------
 

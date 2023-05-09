@@ -1,26 +1,94 @@
-<%- include("partials/header") -%>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Street Foody</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div class="filter-container">
-    <h1 class="title">Filter Shops</h1>
-    <div class="form-group">
-        <label for="">Domain</label>
-        <select
-          class="input-box"
-          class="custom-select"
-          id="domainFilter"
-          name="domain"
-        >
-          <option selected oninput=domainFilter()>Choose...</option>
-          <% domains.forEach(function(eachDomain) { %>
-            <option ><%= eachDomain %></option>
-          <% }) %>
-        </select>
-      </div>
-      <div class="shopsLists">
-        <div class="eachShop">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="shortcut icon" href="logo1.jpg" type="image/x-icon" />
+  </head>
+  <body class="hm-gradient">
+    <main>
+      <h1 class="nav-logo-filter"><a href="/">Street Foody</a></h1>
+      <div class="container">
+        <div class="">
+          <div class="filter-container">
+            <h1 class="title">Filter Shops</h1>
+            <div class="form-group">
+              <label for="">Domain</label>
+              <select
+                class="input-box"
+                class="custom-select"
+                id="domainFilter"
+                name="domain"
+                oninput="domainFilter()"
+              >
+                <option selected>Choose...</option>
+                <% domains.forEach(function(eachDomain) { %>
+                <option><%= eachDomain %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+
+          <!-- ==================Shops section starts=========================== -->
+          <section class="">
+            <div class="container mt-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <!--Table-->
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Shop Name</th>
+                        <th>Shop Owner</th>
+                        <th>Location</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <!-- -------All Shops Starts Here----------- -->
+                    <tbody id="shopTableBody"></tbody>
+                    <!-- -------All Shops Ends Here----------- -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
-</div>
 
-<%- include("partials/footer") -%>
+        <%- include("partials/footer") -%>
+      </div>
+    </main>
+  </body>
+</html>

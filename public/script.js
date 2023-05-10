@@ -22,7 +22,7 @@ const domainSubCategory = () => {
       label.innerText = e;
       const input = document.createElement("INPUT");
       input.setAttribute("type", "checkbox");
-      input.setAttribute("name", e);
+      input.setAttribute("name", `${domain}_${e}`); // Assign a unique name
       input.setAttribute("class", "checkbox");
       div.appendChild(label);
       div.appendChild(input);
@@ -30,6 +30,7 @@ const domainSubCategory = () => {
     });
   }
 };
+
 
 const domainFilter = () => {
   const domain = document.getElementById("domainFilter").value;
@@ -42,13 +43,10 @@ const domainFilter = () => {
       let tableHTML = "<tbody>";
 
       tableHTML += "";
-      let i = 0;
       data.forEach((shop) => {
-        i = i + 1;
         tableHTML += "<tr>";
-        tableHTML += "<th scope='row'>" + i + "</th>";
-        if (shop.locationPic) {
-          tableHTML += "<td>" + `<img style="width : 200px; max-height : 200px;" src="./uploads/${shop.locationPic}" alt=''>` + "</td>";
+        if (shop.photo) {
+          tableHTML += "<td>" + `<img style="width : 200px; max-height : 200px;" src="./uploads/${shop.photo}" alt=''>` + "</td>";
         }
         else{
           tableHTML += "<td>" + "</td>";
@@ -58,6 +56,8 @@ const domainFilter = () => {
         tableHTML += "<td>" + shop.owner + "</td>";
         tableHTML += "<td>" + shop.location + "</td>";
         tableHTML += "<td>" + shop.description + "</td>";
+        const itemNames = shop.items.map((item) => item.name).join(", ");
+        tableHTML += "<td>" + itemNames + "</td>";
         tableHTML += "<td>" + shop.start + "</td>";
         tableHTML += "<td>" + shop.end + "</td>";
         tableHTML += "</tr>";

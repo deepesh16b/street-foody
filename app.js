@@ -57,9 +57,10 @@ const eachShopDataSchema = {
     type: String,
     require: true,
   },
-  items: {
-    type: [String],
-  },
+  items: [{
+    name: String,
+    selected: Boolean
+  }],
   description: {
     type: String,
   },
@@ -75,7 +76,7 @@ const eachShopDataSchema = {
   foodPic: {
     type: String,
   },
-  locationPic: {
+  photo: {
     type: String,
   },
 };
@@ -90,15 +91,15 @@ const allShopsSchema = {
 const AllShops = mongoose.model("AllShops", allShopsSchema);
 
 const eachShop = new EachShop({
-  name: "Bombay Foods",
-  owner: "Faizu",
-  location: "Piplani, Bhopal",
-  domain: "north indian",
-  items: ["chole bathure", "tawa chicken"],
-  description: "Bombay foods variety",
+  name: "Wow Burger",
+  owner: "Aryan Jain",
+  location: "MP Nagar, Bhopal",
+  domain: "fast food",
+  description: "Burger shop",
+  items : [{name : "burger"},{name : "pizza"}],
   start: "10:00",
   end: "20:00",
-  locationPic : "image-1683753205122-49247580.jpeg", 
+  photo : "wow-burger.jpg", 
 });
 
 const defaultArray = [eachShop];
@@ -155,14 +156,25 @@ app.get("/search/:option", async (req, res) => {
 // -----------post request--------------------
 
 app.post("/add", upload, function (req, res) {
+  const selectedItems = [];
+  const domain = req.body.domain;
+
+  // Iterate through the request body and find selected items
+  for (const key in req.body) {
+    if (key.startsWith(domain)) {
+      const itemName = key.split("_")[1];
+      selectedItems.push({ name: itemName, selected: true });
+    }
+  }
+
   const newShop = new EachShop({
     name: req.body.name,
     owner: req.body.owner,
     location: req.body.location,
     domain: req.body.domain,
     description: req.body.description,
-    locationPic : req.file.filename,
-    // items: ["chole bathure", "tawa chicken"],
+    photo: req.file.filename,
+    items: selectedItems, // Add selected items
     start: req.body.start,
     end: req.body.end,
   });
@@ -173,7 +185,7 @@ app.post("/add", upload, function (req, res) {
         if (err) console.log(err);
         else console.log("Successfully saved default items to database");
       });
-      res.redirect("/");
+      // res.redirect("/");
     }
     // const posts = foundArrayOfObjects[0].allPostsArray;
     // res.render("home", {content : homeStartingContent, allPosts : posts});

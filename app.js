@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const lodash = require("lodash");
+const multer = require("multer");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -15,6 +16,23 @@ mongoose.set("strictQuery", true);
 mongoose.connect(
   "mongodb+srv://deepesh16b:atharva1@cluster0.5jmf7ef.mongodb.net/shopDB"
 ); // shopDB
+
+// Configure multer
+var storage = multer.diskStorage({
+  destination: './public/uploads/',
+  filename: function (req, file, cb) {
+    // Extract the file extension
+    const fileExtension = file.originalname.split('.').pop();
+
+    // Generate a unique filename for the uploaded file
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+
+    cb(null, file.fieldname + '-' + uniqueSuffix + '.' + fileExtension);
+  },
+});
+
+
+const upload = multer({ storage: storage }).single("image");
 
 const domains = new Map([
   ["universal indian", ["panipuri", "samosa", "chaat"]],
@@ -45,10 +63,19 @@ const eachShopDataSchema = {
   description: {
     type: String,
   },
-  start_time: {
+  start: {
     type: String,
   },
-  end_time: {
+  end: {
+    type: String,
+  },
+  menuPic: {
+    type: String,
+  },
+  foodPic: {
+    type: String,
+  },
+  locationPic: {
     type: String,
   },
 };
@@ -69,8 +96,9 @@ const eachShop = new EachShop({
   domain: "north indian",
   items: ["chole bathure", "tawa chicken"],
   description: "Bombay foods variety",
-  start_time: "10am",
-  end_time: "10pm",
+  start: "10:00",
+  end: "20:00",
+  locationPic : "image-1683753205122-49247580.jpeg", 
 });
 
 const defaultArray = [eachShop];
@@ -104,36 +132,39 @@ app.get("/fail-added", (req, res) => {
   res.render("fail-added");
 });
 // ------- API endpoint-----------
-app.get('/search/:option', async (req, res) => {
+app.get("/search/:option", async (req, res) => {
   const option = decodeURIComponent(req.params.option);
 
   try {
-    const foundShops = await AllShops.find({'allShopsArray.domain': option});
+    const foundShops = await AllShops.find({ "allShopsArray.domain": option });
 
     if (foundShops.length === 0) {
       res.json([]);
     } else {
-      const shops = foundShops[0].allShopsArray.filter(shop => shop.domain === option);
+      const shops = foundShops[0].allShopsArray.filter(
+        (shop) => shop.domain === option
+      );
       res.json(shops);
     }
   } catch (error) {
     console.log(error);
-    res.send('Error occurred while searching for shops');
+    res.send("Error occurred while searching for shops");
   }
 });
 
 // -----------post request--------------------
 
-app.post("/add", function (req, res) {
+app.post("/add", upload, function (req, res) {
   const newShop = new EachShop({
     name: req.body.name,
     owner: req.body.owner,
     location: req.body.location,
     domain: req.body.domain,
     description: req.body.description,
+    locationPic : req.file.filename,
     // items: ["chole bathure", "tawa chicken"],
-    // start_time: "10am",
-    // end_time: "10pm",
+    start: req.body.start,
+    end: req.body.end,
   });
 
   AllShops.find({}, function (error, foundArrayOfObjects) {

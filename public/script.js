@@ -31,7 +31,6 @@ const domainSubCategory = () => {
   }
 };
 
-
 const domainFilter = () => {
   const domain = document.getElementById("domainFilter").value;
   // alert(`domain changed to ${domain}`);
@@ -45,10 +44,42 @@ const domainFilter = () => {
       tableHTML += "";
       data.forEach((shop) => {
         tableHTML += "<tr>";
-        if (shop.photo) {
-          tableHTML += "<td>" + `<img style="width : 200px; max-height : 200px;" src="./uploads/${shop.photo}" alt=''>` + "</td>";
+        var startTime = shop.start;
+        var endTime = shop.end;
+
+        var currentTime = new Date().toLocaleTimeString("en-US", {
+          timeZone: "Asia/Kolkata",
+          hour12: false,
+        });
+
+        // Convert the start-time, end-time, and current time to comparable formats (e.g., minutes past midnight)
+        function convertToMinutes(time) {
+          var splitTime = time.split(":");
+          return parseInt(splitTime[0]) * 60 + parseInt(splitTime[1]);
         }
-        else{
+        var startMinutes = convertToMinutes(startTime);
+        var endMinutes = convertToMinutes(endTime);
+        var currentMinutes = convertToMinutes(currentTime);
+        console.log(startMinutes + "  " + endMinutes + " " + currentMinutes);
+        // Adjust the end time to be on the next day if it's earlier than the start time
+        if (endMinutes < startMinutes) {
+          endMinutes += 24 * 60;
+        }
+
+        // Compare the current time with the start-time and end-time to determine if it falls within the specified range
+        if (currentMinutes >= startMinutes && currentMinutes <= endMinutes) {
+          // Add a class to the shop-name div to change its background color
+          tableHTML += "<th style='color : green'>" + "Open" + "</th>";
+        } else {
+          tableHTML += "<th style='color : red'>" + "Close" + "</th>";
+        }
+
+        if (shop.photo) {
+          tableHTML +=
+            "<td>" +
+            `<img style="width : 180px; max-height : 180px;" src="./uploads/${shop.photo}" alt=''>` +
+            "</td>";
+        } else {
           tableHTML += "<td>" + "</td>";
           console.log("no img");
         }

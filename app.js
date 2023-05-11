@@ -58,7 +58,7 @@ const eachShopDataSchema = {
     require: true,
   },
   items: [{
-    name: String,
+    name: String, 
     selected: Boolean
   }],
   description: {
@@ -98,7 +98,7 @@ const eachShop = new EachShop({
   description: "Burger shop",
   items : [{name : "burger"},{name : "pizza"}],
   start: "10:00",
-  end: "20:00",
+  end: "21:00",
   photo : "wow-burger.jpg", 
 });
 
